@@ -6,15 +6,21 @@
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 16:41:32 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/01/10 18:59:40 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:19:51 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libftprintf.h"
 #include <stdarg.h>
 #include "libft/libft.h"
 
-int	ft_printf_arg(const char *ctd, int i, va_list ap);
+static int	ft_printf_arg(const char *ctd, int i, va_list ap)
+{
+	if (ctd[i + 1] == 'c')
+		return (ft_putchar(va_arg(ap, int)));
+	else
+		return (0);
+}
 
 int	ft_printf(const char *conteudo, ...)
 {
@@ -41,10 +47,9 @@ int	ft_printf(const char *conteudo, ...)
 	return(print);
 }
 
-int	ft_printf_arg(const char *ctd, int i, va_list ap)
+int	main()
 {
-	if (ctd[i + 1] == 'c')
-		return (ft_putchar(var_arg(ap, int)));
-	else
-		return (0);
+	char	k = 'c';
+	ft_printf(&k);
 }
+
