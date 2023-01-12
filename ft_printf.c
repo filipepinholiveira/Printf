@@ -5,51 +5,84 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/09 16:41:32 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/01/11 18:19:51 by fpinho-d         ###   ########.fr       */
+/*   Created: 2023/01/12 16:11:16 by fpinho-d          #+#    #+#             */
+/*   Updated: 2023/01/12 19:01:54 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include <stdio.h>
+#include <unistd.h>
 #include <stdarg.h>
-#include "libft/libft.h"
+#include <string.h>
 
-static int	ft_printf_arg(const char *ctd, int i, va_list ap)
+
+int	ft_putstr(char *str)
 {
-	if (ctd[i + 1] == 'c')
-		return (ft_putchar(va_arg(ap, int)));
-	else
-		return (0);
+	int	i ;
+	i = 0;
+
+	while(str[i])
+
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	return (i);
+}
+
+
+int ft_putchar(char c)
+{
+	write(1, &c, 1);
+	return (1);
+}
+
+int	ft_printf_arg(const char *conteudo, int i, va_list ap)
+{
+	int count;
+
+	count = 0;
+	if (conteudo[i + 1] == 'c')
+		count += (ft_putchar(va_arg(ap, int)));
+	else if(conteudo[i + 1] == 's')
+		count += (puts(va_arg(ap, char *)));
+	return (count);
 }
 
 int	ft_printf(const char *conteudo, ...)
 {
-	va_list	ap;
+	va_list ap;
 	int	i;
-	int	print;
+	int	ret;
 
 	i = 0;
-	print = 0;
-	va_start(ap, conteudo);
+	ret = 0;
 
-	while (conteudo[i])
+	va_start(ap, conteudo);
+	while(conteudo[i])
 	{
-		if (conteudo[i] == '%' && ft_strchr("c", conteudo[i + 1]))
+		if ((conteudo[i] == '%') && strchr("csdiuxX", conteudo[i + 1]))
 		{
-			print += ft_printf_arg(conteudo, i, ap);
-			i++;
+			ret += ft_printf_arg(conteudo, i, ap);
+			i+=2;
 		}
 		else
-			print += ft_putchar(conteudo[i]);
-		i++;
+		{
+			ret += ft_putchar(conteudo[i]);
+			i++;
+		}
 	}
 	va_end(ap);
-	return(print);
+	return(ret);
 }
 
 int	main()
 {
-	char	k = 'c';
-	ft_printf(&k);
-}
+	char	a = 'p';
+	int	b = 100;
+	char c[] = "Tiago";
 
+//	printf("Valores sao %c %d", a, b);
+printf("%d", ft_printf("Valores %c %s" , a, c));
+	
+}
