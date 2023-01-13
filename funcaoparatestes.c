@@ -6,57 +6,53 @@
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:53:20 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/01/12 17:03:16 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:26:59 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// C program for the above approach
 
-#include <stdarg.h>
 #include <stdio.h>
+#include <unistd.h>
+#include "libftprintf.h"
 
-// Variadic function to add numbers
-int AddNumbers(int n, ...)
+int	ft_strlen(char *str)
 {
-	int Sum = 0;
+	int	i;
 
-	// Declaring pointer to the
-	// argument list
-	va_list ptr;
-
-	// Initializing argument to the
-	// list pointer
-	va_start(ptr, n);
-
-	for (int i = 0; i < n; i++)
-
-		// Accessing current variable
-		// and pointing to next one
-		Sum += va_arg(ptr, int);
-
-	// Ending argument list traversal
-	va_end(ptr);
-
-	return Sum;
+	i = 0;
+	while(str[i])
+	{
+		i++;
+	}
+	return(i);
 }
 
-// Driver Code
+
+int	ft_putnbr(int nb)
+{
+	int	count;
+
+	count = 0;
+	if (nb < 0)
+	{
+		ft_putchar('-');
+		nb = -nb;
+	}
+	if (nb > 10)
+	{
+		ft_putnbr(nb / 10);
+		nb = nb % 10;
+	}
+	if (nb <= 10)
+	{
+		ft_putchar(nb + 48);
+	}
+	//printf("%d\n", count);
+	return (count);
+}
+
 int main()
 {
-	printf("\n\n Variadic functions: \n");
-
-	// Variable number of arguments
-	printf("\n 1 + 2 = %d ",
-		AddNumbers(2, 1, 2));
-
-	printf("\n 3 + 4 + 5 = %d ",
-		AddNumbers(3, 3, 4, 5));
-
-	printf("\n 6 + 7 + 8 + 9 = %d ",
-		AddNumbers(4, 6, 7, 8, 9));
-
-	printf("\n");
-
-	return 0;
+	int	a = 2000;
+	ft_putnbr(a);
 }
-
