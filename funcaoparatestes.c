@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:53:20 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/01/13 12:26:59 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:19:51 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,45 +14,56 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "libftprintf.h"
+#include <stdlib.h>
 
-int	ft_strlen(char *str)
+
+int		number_len(int n);
+
+char	*ft_itoa(int n)
 {
-	int	i;
+	int		i;
+	long	aux;
+	char	*ptr;
 
-	i = 0;
-	while(str[i])
+	i = number_len(n);
+	aux = n;
+	ptr = (char *)malloc(sizeof(char) * (i + 1));
+	if (!ptr)
+		return (NULL);
+	ptr[i] = '\0';
+	if (aux < 0)
 	{
-		i++;
+		ptr[0] = '-';
+		aux *= -1;
 	}
-	return(i);
+	if (aux == 0)
+		ptr[0] = '0';
+	ptr[i--] = '\0';
+	while (aux)
+	{
+		ptr[i--] = (aux % 10) + '0';
+		aux /= 10;
+	}
+	return (ptr);
 }
 
-
-int	ft_putnbr(int nb)
+int	number_len(int n)
 {
-	int	count;
+	int	len;
 
-	count = 0;
-	if (nb < 0)
+	len = 0;
+	if (n <= 0)
+		len++;
+	while (n)
 	{
-		ft_putchar('-');
-		nb = -nb;
+		len++;
+		n /= 10;
 	}
-	if (nb > 10)
-	{
-		ft_putnbr(nb / 10);
-		nb = nb % 10;
-	}
-	if (nb <= 10)
-	{
-		ft_putchar(nb + 48);
-	}
-	//printf("%d\n", count);
-	return (count);
+	return (len);
 }
 
 int main()
 {
-	int	a = 2000;
-	ft_putnbr(a);
+	int	a = 0;
+	printf("%s", ft_itoa(a));
 }

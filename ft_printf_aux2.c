@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_printf_aux2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 18:05:28 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/01/16 18:27:53 by fpinho-d         ###   ########.fr       */
+/*   Created: 2023/01/16 16:00:37 by fpinho-d          #+#    #+#             */
+/*   Updated: 2023/01/16 17:53:36 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "libftprintf.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
+int	ft_putnbr(int a)
+{
+	int		c;
+	char	*b;
 
-int		ft_putchar(char c);
-int		ft_putstr(char *str);
-int		ft_strlen(char *str);
-char	*ft_itoa(int c);
-int		ft_putnbr(int a);
-int		ft_sizeofstr(int c);
-int		ft_printf_arg(const char *conteudo, int i, va_list ap);
-int		ft_printf(const char *conteudo, ...);
-
-#endif
+	b = ft_itoa(a);
+	c = ft_strlen(b);
+	ft_putstr(b);
+	free(b);
+	return (c);
+}
