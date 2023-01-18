@@ -1,39 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_aux2.c                                   :+:      :+:    :+:   */
+/*   ft_printf_aux3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 16:00:37 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/01/18 10:57:57 by fpinho-d         ###   ########.fr       */
+/*   Created: 2023/01/18 12:01:35 by fpinho-d          #+#    #+#             */
+/*   Updated: 2023/01/18 12:51:14 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
 
-int	ft_putnbr(int a)
+
+int	ft_putnbr_hexa(unsigned int nbr, const char * base)
 {
-	int		c;
-	char	*b;
+	int	size;
+	const char *str;
 
-	b = ft_itoa(a);
-	c = ft_strlen(b);
-	ft_putstr(b);
-	free(b);
-	return (c);
-}
+	//	str = ft_str_to_hexa(unsigned int a, const char * hexa)
+	//	size = tamanho da str retornada
 
-int	ft_putnbr_unsigned(unsigned int x)
-{
-	int	a;
-	int	b;
-	char	*c;
-
-	a = x;
-	c = ft_itoa(a);
-	b = ft_strlen(c);
-	ft_putstr(c);
-	free(c);
-	return(b);
+	return(size);
 }

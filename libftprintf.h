@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 18:05:28 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/01/16 18:27:53 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/01/18 11:01:10 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int		ft_putnbr(int a);
 int		ft_sizeofstr(int c);
 int		ft_printf_arg(const char *conteudo, int i, va_list ap);
 int		ft_printf(const char *conteudo, ...);
+int		ft_putnbr_unsigned(unsigned int x);
 
 #endif

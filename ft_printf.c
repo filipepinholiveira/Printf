@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:11:16 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/01/16 18:39:16 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/01/18 11:22:21 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,16 @@ int	ft_printf_arg(const char *conteudo, int i, va_list ap)
 		count += (ft_putstr(va_arg(ap, char *)));
 	else if ((conteudo[i + 1] == 'd') || (conteudo[i + 1] == 'i'))
 		count += (ft_putnbr(va_arg(ap, int)));
+	else if (conteudo[i + 1] == '%')
+			count += (ft_putchar(conteudo[i + 1]));
+	else if (conteudo[i + 1] == 'u')
+			count += (ft_putnbr_unsigned(va_arg(ap, unsigned int))); 
+//	else if (conteudo[i + 1] == 'x')
+//			count += (); 
+//	else if (conteudo[i + 1] == 'X')
+//			count += (); 
+//	else if (conteudo[i + 1] == 'p')
+//			count += (); 
 	printf(" tamanho e': %d\n", count);
 	return (count);
 }
@@ -64,6 +74,8 @@ int	main()
 	char c[] = "Tiago";
 	int	d = 2000;	
 	char str [] = "(null)";
+	unsigned int e = 42;
+	unsigned int f = 255;
 
 
 	ft_printf("Valores:\n\n");
@@ -74,7 +86,10 @@ int	main()
 	ft_printf("%i\n", d);
 	int i = ft_printf("string nula: %s\n", str);
 	int j = printf("string nula: %s\n", str);
-	int k = printf("tamanho e' %d", printf("%s", str));
-	printf("\n%d - %d", i, j);
+//	int k = printf("tamanho e' %d", printf("%s", str));
+	printf("\n%d - %d\n", i, j);
+	ft_printf("%%\n");
+	ft_printf("%u\n", e);
+	printf("%x\n", f);
 }
 
