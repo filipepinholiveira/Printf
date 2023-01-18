@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:11:16 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/01/18 11:22:21 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/01/18 17:33:17 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,12 @@ int	ft_printf_arg(const char *conteudo, int i, va_list ap)
 			count += (ft_putchar(conteudo[i + 1]));
 	else if (conteudo[i + 1] == 'u')
 			count += (ft_putnbr_unsigned(va_arg(ap, unsigned int))); 
-//	else if (conteudo[i + 1] == 'x')
-//			count += (); 
-//	else if (conteudo[i + 1] == 'X')
-//			count += (); 
-//	else if (conteudo[i + 1] == 'p')
-//			count += (); 
-	printf(" tamanho e': %d\n", count);
+	else if (conteudo[i + 1] == 'x')
+			count += (ft_putnbr_hexa(va_arg(ap, unsigned int), "0123456789abcdef")); 
+	else if (conteudo[i + 1] == 'X')
+			count += (ft_putnbr_hexa(va_arg(ap, unsigned int), "0123456789ABCDEF")); 
+	else if (conteudo[i + 1] == 'p')
+			count += (ft_putstr("0x") + ft_put_pointer(va_arg(ap, void *), "0123456789abcdef"));
 	return (count);
 }
 
@@ -72,7 +71,7 @@ int	main()
 	char a = 'p';
 	int	b = 1090;
 	char c[] = "Tiago";
-	int	d = 2000;	
+	void	*d = &b;	
 	char str [] = "(null)";
 	unsigned int e = 42;
 	unsigned int f = 255;
@@ -91,5 +90,10 @@ int	main()
 	ft_printf("%%\n");
 	ft_printf("%u\n", e);
 	printf("%x\n", f);
+	ft_printf("%x\n", f);;
+	printf("%X\n", f);
+	ft_printf("%X\n", f);;
+	printf("%p\n", d);
+	ft_printf("%p\n", d);
 }
 
