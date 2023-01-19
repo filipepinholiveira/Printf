@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:11:16 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/01/18 17:33:17 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/01/19 19:37:28 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <limits.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <stdarg.h>
 #include <string.h>
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_printf_arg(const char *conteudo, int i, va_list ap)
 {
@@ -36,7 +37,7 @@ int	ft_printf_arg(const char *conteudo, int i, va_list ap)
 	else if (conteudo[i + 1] == 'X')
 			count += (ft_putnbr_hexa(va_arg(ap, unsigned int), "0123456789ABCDEF")); 
 	else if (conteudo[i + 1] == 'p')
-			count += (ft_putstr("0x") + ft_put_pointer(va_arg(ap, void *), "0123456789abcdef"));
+			count += (ft_put_pointer(va_arg(ap, void *), "0123456789abcdef"));
 	return (count);
 }
 
@@ -73,8 +74,9 @@ int	main()
 	char c[] = "Tiago";
 	void	*d = &b;	
 	char str [] = "(null)";
-	unsigned int e = 42;
+//	unsigned int e = 42;
 	unsigned int f = 255;
+	void	*g = 0;
 
 
 	ft_printf("Valores:\n\n");
@@ -82,18 +84,20 @@ int	main()
 	ft_printf("%c\n", a);
 	ft_printf("%d\n", b);
 	ft_printf("%s\n", c);
-	ft_printf("%i\n", d);
+	ft_printf("%i\n", INT_MAX);
+	ft_printf("%i\n", INT_MIN);
 	int i = ft_printf("string nula: %s\n", str);
 	int j = printf("string nula: %s\n", str);
 //	int k = printf("tamanho e' %d", printf("%s", str));
 	printf("\n%d - %d\n", i, j);
 	ft_printf("%%\n");
-	ft_printf("%u\n", e);
+	ft_printf("%u\n", 0-1);
 	printf("%x\n", f);
 	ft_printf("%x\n", f);;
 	printf("%X\n", f);
 	ft_printf("%X\n", f);;
 	printf("%p\n", d);
 	ft_printf("%p\n", d);
+	ft_printf("%p\n", g);
 }
 

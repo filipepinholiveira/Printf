@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_aux4.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:40:53 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/01/18 17:32:02 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/01/19 19:39:12 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 
 
@@ -55,6 +55,10 @@ int	ft_put_pointer(void *nbr, char *base)
 	char *str;
 	unsigned long a;
 
+	if (!nbr)
+		return (write (1, "(nil)", 5));
+	else
+		ft_putstr("0x");
 	a = (unsigned long) nbr;
 	str = ft_put_hexa_to_str(a, base);
 	ret = ft_putstr(str);

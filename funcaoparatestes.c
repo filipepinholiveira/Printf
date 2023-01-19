@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   funcaoparatestes.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:53:20 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/01/16 16:19:51 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/01/19 19:39:32 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include <stdio.h>
 #include <unistd.h>
-#include "libftprintf.h"
+#include "ft_printf.h"
 #include <stdlib.h>
 
 

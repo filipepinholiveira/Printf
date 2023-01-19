@@ -1,12 +1,28 @@
-CC			= gcc
+#-*MAKEFILE*-
+
+# target:   dependencies
+#           action
+
+
+CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 
-all: FT_PRINTF
+NAME		= libftprintf.a
 
-ft_printf:		ft_printf.o
-			$(CC) $(CFLAGS) -o ft_printf ft_printf.o
+MAND		= ft_printf.c ft_printf_aux.c ft_printf_aux2.c ft_printf_aux3.c ft_printf_aux4.c
 
-ft_printf.o: ft_printf.c ft_printf_aux.c libftprint.h
+OBJ_MAND	= $(MAND:.c=.o)
 
+all: $(NAME)
 
+$(NAME): $(OBJ_MAND)
+	ar rc $(NAME) $(OBJ_MAND)
+
+clean:
+	rm -rf $(OBJ_MAND)
+
+fclean: clean
+	rm -rf $(NAME)
+
+re: fclean all
 
