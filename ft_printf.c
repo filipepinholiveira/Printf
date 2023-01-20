@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:11:16 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/01/19 19:37:28 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 20:15:07 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ int	ft_printf_arg(const char *conteudo, int i, va_list ap)
 	else if (conteudo[i + 1] == '%')
 			count += (ft_putchar(conteudo[i + 1]));
 	else if (conteudo[i + 1] == 'u')
-			count += (ft_putnbr_unsigned(va_arg(ap, unsigned int))); 
+			count += (ft_putnbr_unsigned(va_arg(ap, unsigned int)));
 	else if (conteudo[i + 1] == 'x')
-			count += (ft_putnbr_hexa(va_arg(ap, unsigned int), "0123456789abcdef")); 
+			count += (ft_putnbr_hexa(va_arg(ap, unsigned int), "0123456789abcdef"));
 	else if (conteudo[i + 1] == 'X')
-			count += (ft_putnbr_hexa(va_arg(ap, unsigned int), "0123456789ABCDEF")); 
+			count += (ft_putnbr_hexa(va_arg(ap, unsigned int), "0123456789ABCDEF"));
 	else if (conteudo[i + 1] == 'p')
 			count += (ft_put_pointer(va_arg(ap, void *), "0123456789abcdef"));
 	return (count);
@@ -66,7 +66,7 @@ int	ft_printf(const char *conteudo, ...)
 	va_end (ap);
 	return (ret);
 }
-
+/*
 int	main()
 {
 	char a = 'p';
@@ -101,3 +101,11 @@ int	main()
 	ft_printf("%p\n", g);
 }
 
+
+int	main()
+{
+	unsigned int a = -30;
+	printf("%u\n", a);
+	ft_printf("%u\n", a);
+}
+*/

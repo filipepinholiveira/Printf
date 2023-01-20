@@ -33,15 +33,15 @@ char	*ft_str_to_hexa(unsigned int a, const char * base)
 	char *ptr;
 
 	size = ft_count_hex(a);
-	ptr = (char*) malloc(sizeof(char) * (size + 1));
+	ptr = malloc((size + 1) * sizeof(char));
 	if (!ptr)
 		return (NULL);
-	ptr[size] = '\0';
-	while(size > 0)
+	ptr[size--] = '\0';
+	while(a > 0)
 	{
-		size--;
 		ptr[size] = base[a % 16];
-		a = a / 16;
+		a = a / 16;		
+		size--;
 	}
 	return (ptr);
 }
@@ -51,7 +51,7 @@ int	ft_putnbr_hexa(unsigned int nbr, char * base)
 {
 	int	ret;
 	char *str;
-
+	
 	str = ft_str_to_hexa(nbr, base);
 	ret = ft_putstr(str);
 

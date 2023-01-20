@@ -61,7 +61,7 @@ int	ft_put_pointer(void *nbr, char *base)
 		ft_putstr("0x");
 	a = (unsigned long) nbr;
 	str = ft_put_hexa_to_str(a, base);
-	ret = ft_putstr(str);
+	ret = ft_putstr(str) + 2;
 	free(str);
 	return (ret);
 }
