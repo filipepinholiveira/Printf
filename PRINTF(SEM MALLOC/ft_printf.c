@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:39:06 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/01/23 18:19:21 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/01/23 18:28:31 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int    ft_print_arg(va_list arg, char c)
     if ((c == 'd') || (c == 'i'))
         len_str += ft_putnbr(va_arg(arg, int));
     if (c == 'u')
-        len_str += ft_putnbr_u(va_arg(arg, unsigned int))
+        len_str += ft_putnbr_u(va_arg(arg, unsigned int));
     return (len_str);
 }
 
@@ -55,8 +55,9 @@ int main()
     char a = 'D';
     char b [] = "(null)";
     char c [] = "Filipe";
-    int d = 1000;
+    int d = -10;
+    unsigned int    e = 100000;
      
-    printf("Original: %c %s %s %d\n", a, b, c, d);
-    ft_printf("Meu: %c %s %s %d\n", a, b, c, d);
+    printf("Original: %c %s %s %d %u\n", a, b, c, d, e);
+    ft_printf("Meu: %c %s %s %d %u\n", a, b, c, d, e);
 }
