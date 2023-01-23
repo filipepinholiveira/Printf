@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/23 16:09:38 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/01/23 18:28:14 by fpinho-d         ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   ft_printf.h										:+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: fpinho-d <fpinho-d@student.42.fr>		  +#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2023/01/23 16:09:38 by fpinho-d		  #+#	#+#			 */
+/*   Updated: 2023/01/23 18:45:47 by fpinho-d		 ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
@@ -22,11 +22,11 @@
 # include <unistd.h>
 # include <stdio.h>
 
-int		ft_putchar(char c);
-int     ft_putstr(char *str);
-int     ft_putnbr(int x);
-int     ft_count(int a);
-int ft_putnbr_u(unsigned int x);
-int  ft_count_u(unsigned int a);
+int	ft_putchar(char c);
+int	ft_putstr(char *str);
+int	ft_putnbr(int x);
+int	ft_count(int a);
+int	ft_putnbr_u(unsigned int x);
+int	ft_count_u(unsigned int a);
 
 #endif
