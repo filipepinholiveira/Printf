@@ -15,7 +15,8 @@
 int	ft_print_arg(va_list arg, char c)
 {
 	int	len_str;
-
+	
+	len_str = 0;
 	if (c == 'c')
 		len_str += ft_putchar(va_arg(arg, int));
 	if (c == 's')
@@ -24,6 +25,8 @@ int	ft_print_arg(va_list arg, char c)
 		len_str += ft_putnbr(va_arg(arg, int));
 	if (c == 'u')
 		len_str += ft_putnbr_u(va_arg(arg, unsigned int));
+	if (c == 'x')
+		len_str += ft_putnbr_hexa(va_arg(arg, unsigned int), "0123456789abcdef");
 	return (len_str);
 }
 
@@ -50,16 +53,16 @@ int	ft_printf(const char *conteudo, ...)
 	va_end (arg);
 	return (retorno);
 }
-/*
+/* 
 int main()
 {
 	char a = 'D';
 	char b [] = "(null)";
 	char c [] = "Filipe";
 	int d = -10;
-	unsigned int	e = 100000;
+	unsigned int	e = 255;
 	 
-	printf("Original: %c %s %s %d %u\n", a, b, c, d, e);
+	printf("Original: %c %s %s %d %u %x\n", a, b, c, d, e, e);
 	ft_printf("Meu: %c %s %s %d %u\n", a, b, c, d, e);
 }
-*/
+ */

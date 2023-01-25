@@ -22,11 +22,13 @@
 # include <unistd.h>
 # include <stdio.h>
 
+int	ft_printf(const char *conteudo, ...);
 int	ft_putchar(char c);
 int	ft_putstr(char *str);
 int	ft_putnbr(int x);
 int	ft_count(int a);
 int	ft_putnbr_u(unsigned int x);
 int	ft_count_u(unsigned int a);
+int	ft_putnbr_hexa(unsigned int x, char *base);
 
 #endif

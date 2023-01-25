@@ -12,23 +12,14 @@
 
 # include "ft_printf.h"
 
-int ft_putstr(char *str)
-{
-	int i;
-
-	if (!str)
-		return write(1, (NULL), 6);
-	i = 0;
-	while (str[i])
-	{
-		write (1, &str[i], 1);
-		i++;
-	}
-	return (i);
-}
-
 int main()
 {
-	char a [] = "Filipe";
-	ft_putstr(a);
+	char a = 'D';
+	char b [] = "(null)";
+	char c [] = "Filipe";
+	int d = -10;
+	unsigned int	e = 255;
+	 
+	printf("Original: %c %s %s %d %u %x\n", a, b, c, d, e, e);
+	ft_printf("Meu: %c %s %s %d %u %x\n", a, b, c, d, e, e);
 }
