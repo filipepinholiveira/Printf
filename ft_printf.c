@@ -1,111 +1,74 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
+/*																			*/
+/*														:::	  ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/12 16:11:16 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/01/20 20:15:07 by fpinho-d         ###   ########.fr       */
-/*                                                                            */
+/*													+:+ +:+		 +:+	 */
+/*   By: fpinho-d <fpinho-d@student.42.fr>		  +#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2023/01/23 15:39:06 by fpinho-d		  #+#	#+#			 */
+/*   Updated: 2023/01/26 18:30:20 by fpinho-d         ###   ########.fr       */
+/*																			*/
 /* ************************************************************************** */
 
-#include <limits.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <stdarg.h>
-#include <string.h>
 #include "ft_printf.h"
 
-int	ft_printf_arg(const char *conteudo, int i, va_list ap)
+int	ft_print_arg(va_list arg, char c)
 {
-	int	count;
+	int	len;
 
-	count = 0;
-	if (conteudo[i + 1] == 'c')
-		count += (ft_putchar(va_arg(ap, int)));
-	else if (conteudo[i + 1] == 's')
-		count += (ft_putstr(va_arg(ap, char *)));
-	else if ((conteudo[i + 1] == 'd') || (conteudo[i + 1] == 'i'))
-		count += (ft_putnbr(va_arg(ap, int)));
-	else if (conteudo[i + 1] == '%')
-			count += (ft_putchar(conteudo[i + 1]));
-	else if (conteudo[i + 1] == 'u')
-			count += (ft_putnbr_unsigned(va_arg(ap, unsigned int)));
-	else if (conteudo[i + 1] == 'x')
-			count += (ft_putnbr_hexa(va_arg(ap, unsigned int), "0123456789abcdef"));
-	else if (conteudo[i + 1] == 'X')
-			count += (ft_putnbr_hexa(va_arg(ap, unsigned int), "0123456789ABCDEF"));
-	else if (conteudo[i + 1] == 'p')
-			count += (ft_put_pointer(va_arg(ap, void *), "0123456789abcdef"));
-	return (count);
+	len = 0;
+	if (c == 'c')
+		len += ft_putchar(va_arg(arg, int));
+	if (c == 's')
+		len += ft_putstr(va_arg(arg, char *));
+	if ((c == 'd') || (c == 'i'))
+		len += ft_putnbr(va_arg(arg, int));
+	if (c == 'u')
+		len += ft_putnbr_u(va_arg(arg, unsigned int));
+	if (c == 'x')
+		len += ft_putnbr_hexa(va_arg(arg, unsigned int), "0123456789abcdef");
+	if (c == 'X')
+		len += ft_putnbr_hexa(va_arg(arg, unsigned int), "0123456789ABCDEF");
+	if (c == '%')
+		len += ft_putchar('%');
+	if (c == 'p')
+		len += ft_putnbr_hexa_ptr(va_arg(arg, size_t), "0123456789abcdef");
+	return (len);
 }
 
 int	ft_printf(const char *conteudo, ...)
 {
-	va_list	ap;
+	va_list	arg;
 	int		i;
-	int		ret;
+	int		retorno;
 
+	va_start (arg, conteudo);
 	i = 0;
-	ret = 0;
-	va_start(ap, conteudo);
+	retorno = 0;
 	while (conteudo[i])
 	{
-		if ((conteudo[i] == '%') && strchr("csdiuxXp%", conteudo[i + 1]))
+		if (conteudo[i] == '%')
 		{
-			ret += ft_printf_arg(conteudo, i, ap);
-			i += 2;
+			i++;
+			retorno += ft_print_arg(arg, conteudo[i]);
 		}
 		else
-		{
-			ret += ft_putchar(conteudo[i]);
-			i++;
-		}
+			retorno += ft_putchar(conteudo[i]);
+		i++;
 	}
-	va_end (ap);
-	return (ret);
+	va_end (arg);
+	return (retorno);
 }
-/*
-int	main()
+/* 
+int main()
 {
-	char a = 'p';
-	int	b = 1090;
-	char c[] = "Tiago";
-	void	*d = &b;	
-	char str [] = "(null)";
-//	unsigned int e = 42;
-	unsigned int f = 255;
-	void	*g = 0;
-
-
-	ft_printf("Valores:\n\n");
-
-	ft_printf("%c\n", a);
-	ft_printf("%d\n", b);
-	ft_printf("%s\n", c);
-	ft_printf("%i\n", INT_MAX);
-	ft_printf("%i\n", INT_MIN);
-	int i = ft_printf("string nula: %s\n", str);
-	int j = printf("string nula: %s\n", str);
-//	int k = printf("tamanho e' %d", printf("%s", str));
-	printf("\n%d - %d\n", i, j);
-	ft_printf("%%\n");
-	ft_printf("%u\n", 0-1);
-	printf("%x\n", f);
-	ft_printf("%x\n", f);;
-	printf("%X\n", f);
-	ft_printf("%X\n", f);;
-	printf("%p\n", d);
-	ft_printf("%p\n", d);
-	ft_printf("%p\n", g);
+	char a = 'D';
+	char b [] = "(null)";
+	char c [] = "Filipe";
+	int d = -10;
+	unsigned int	e = 255;
+	 
+	printf("Original: %c %s %s %d %u %x\n", a, b, c, d, e, e);
+	ft_printf("      Meu: %c %s %s %d %u\n", a, b, c, d, e);
 }
-
-
-int	main()
-{
-	unsigned int a = -30;
-	printf("%u\n", a);
-	ft_printf("%u\n", a);
-}
-*/
+ */

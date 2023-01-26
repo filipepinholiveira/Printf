@@ -9,7 +9,7 @@ CFLAGS		= -Wall -Wextra -Werror
 
 NAME		= libftprintf.a
 
-MAND		= ft_printf.c ft_printf_aux.c ft_printf_aux2.c ft_printf_aux3.c ft_printf_aux4.c
+MAND		= ft_printf.c ft_putchar.c ft_putstr.c ft_putnbr.c ft_putnbr_u.c ft_putnbr_hexa.c ft_putnbr_hexa_ptr.c
 
 OBJ_MAND	= $(MAND:.c=.o)
 

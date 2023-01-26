@@ -34,7 +34,7 @@ int	ft_count(int a)
 
 int	ft_putnbr(int x)
 {
-	int len;
+	int	len;
 
 	len = ft_count(x);
 	if (x == MIN_INT)
